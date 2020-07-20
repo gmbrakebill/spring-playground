@@ -1,10 +1,7 @@
 package com.example.demo;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
@@ -31,11 +28,16 @@ public class PagesController {
     {
         return "3.141592653589793";
     }
-//    @GetMapping("/math/volume/{length}/{width}/{height}")
-//    public String getVolumeOfRectangle()
-//    {
-//
-//    }
+    @GetMapping("/math/volume/{length}/{width}/{height}")
+    public String getVolumeOfRectangle(
+            @PathVariable(value = "length") int length,
+            @PathVariable(value = "width") int width,
+            @PathVariable(value = "height") int height)
+    {
+        int volume = length * width * height;
+
+        return String.format("The volume of a %s"+ "x" + "%s" + "x" + "%s" + " rectangle is " + volume + "", length,width,height);
+    }
 
 
 
