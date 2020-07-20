@@ -18,6 +18,28 @@ public class PagesController {
 
         return "the total is "+total;
     }
+    @PostMapping("/math/area")
+    public String circleCalc(
+            @RequestParam(value = "type") String type,
+            @RequestParam(value = "circleArea", required = false) Double circleArea,
+            @RequestParam(value = "length", required = false) Double length,
+            @RequestParam(value = "width", required = false) Double width
+    )
+    {
+      if(type.toLowerCase().equals("circle"))
+      {
+
+          double circArea = Math.PI * Math.pow(circleArea, 2);
+          return String.format("Area of a circle with a radius of %s is " + circArea, circleArea);
+      }
+      else if (type.toLowerCase().equals("square"))
+      {
+
+          double area = length * width;
+          return String.format("Area of a %sx%s square is " + area, length,width);
+      }
+      return "invalid";
+    }
     @GetMapping("/math1/sum1")
     public String getInvoiceDate(@RequestParam(value = "n") String number)
     {
@@ -28,7 +50,7 @@ public class PagesController {
     {
         return "3.141592653589793";
     }
-    @GetMapping("/math/volume/{length}/{width}/{height}")
+    @RequestMapping("/math/volume/{length}/{width}/{height}")
     public String getVolumeOfRectangle(
             @PathVariable(value = "length") int length,
             @PathVariable(value = "width") int width,
