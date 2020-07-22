@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Tickets {
    private Passenger passenger;
-    private int price;
+     private int price;
+
     @JsonProperty("Price")
     public int getPrice() {
         return price;
